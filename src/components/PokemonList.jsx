@@ -4,8 +4,6 @@ function PokemonList() {
   return (
     <section>
       <PokemonCard />
-      <PokemonCard />
-      <PokemonCard />
     </section>
   )
 }

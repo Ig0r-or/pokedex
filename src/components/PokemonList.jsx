@@ -38,17 +38,24 @@ const POKEMONS = [
         value={filtro}
         onChange={(e) => setFiltro(e.target.value)}
         placeholder="Ex.: char"
+    
  />
-    {listaFiltrada.map((pokemon) => (
-    <PokemonCard 
-      key={pokemon.id}
-      id={pokemon.id}
-      name={pokemon.name}
-      type={pokemon.type}
-      imgUrl={pokemon.imageUrl}
+    <p>Mostrando {listaFiltrada.length} Pokémon(s)</p>
+
+    {listaFiltrada.length > 0 ? (
+      listaFiltrada.map((pokemon) => (
+        <PokemonCard 
+          key={pokemon.id}
+          id={pokemon.id}
+          name={pokemon.name}
+          type={pokemon.type}
+          imgUrl={pokemon.imageUrl}
     />
-     
-))}
+      ))
+    ) : (
+      <p>Nenhum Pokémon encontrado para esta busca.</p>
+    )}
+
  </section>
 
   )

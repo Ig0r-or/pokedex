@@ -16,6 +16,16 @@ const POKEMONS = [
         name: 'Bixo Cobra',
         type: 'Veneno',
         imageUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/24.png'
+        },
+        {id: 133,
+        name: 'Eevee',
+        type: 'Normal',
+        imageUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/133.png'
+        },
+        {id: 1,
+        name: 'Bulbasaur',
+        type: 'Grama',
+        imageUrl: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png'
         }
        ]
 
@@ -30,34 +40,47 @@ const POKEMONS = [
   )
 
   return (
-    <section>
-    <label htmlFor="busca">Buscar por nome: </label>
-    <input
-        id="busca"
-        type="search"
-        value={filtro}
-        onChange={(e) => setFiltro(e.target.value)}
-        placeholder="Ex.: char"
-    
- />
-    <p>Mostrando {listaFiltrada.length} Pokémon(s)</p>
+     <section
+      className="pokemon-catalog"
+      id="catalogo"
+      aria-labelledby="catalogo-titulo"
+    >
+      <div className="pokemon-catalog__head">
+        <h2 id="catalogo-titulo" className="pokemon-catalog__title">
+          Catálogo
+        </h2>
+        <div className="pokemon-toolbar">
+          <label htmlFor="busca">Buscar por nome</label>
+          <input
+            id="busca"
+            className="pokemon-search"
+            type="search"
+            value={filtro}
+            onChange={(e) => setFiltro(e.target.value)}
+            placeholder="Ex.: char"
+            autoComplete="off"
+          />
+        </div>
+      </div>
 
-    {listaFiltrada.length > 0 ? (
-      listaFiltrada.map((pokemon) => (
-        <PokemonCard 
-          key={pokemon.id}
-          id={pokemon.id}
-          name={pokemon.name}
-          type={pokemon.type}
-          imgUrl={pokemon.imageUrl}
-    />
-      ))
-    ) : (
-      <p>Nenhum Pokémon encontrado para esta busca.</p>
-    )}
-
- </section>
-
+      {listaFiltrada.length === 0 ? (
+        <p className="pokemon-catalog__empty">
+          Nenhum Pokémon encontrado. Tente outro nome na busca.
+        </p>
+      ) : (
+        <div className="pokemon-grid">
+          {listaFiltrada.map((pokemon) => (
+            <PokemonCard
+              key={pokemon.id}
+              id={pokemon.id}
+              name={pokemon.name}
+              type={pokemon.type}
+              imageUrl={pokemon.imageUrl}
+            />
+          ))}
+        </div>
+      )}
+    </section>
   )
 }
 
